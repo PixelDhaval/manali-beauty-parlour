@@ -6,4 +6,133 @@
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-serif: 'Playfair Display', ui-serif, Georgia, 'Times New Roman', serif;
+
+    --color-primary-50: #fff0f6;
+    --color-primary-100: #ffdcea;
+    --color-primary-200: #ffb8d6;
+    --color-primary-300: #ff8aba;
+    --color-primary-400: #f7549f;
+    --color-primary-500: #e42a86;
+    --color-primary-600: #d0126f;
+    --color-primary-700: #ab0c5c;
+    --color-primary-800: #870a4a;
+    --color-primary-900: #63073a;
+
+    --color-gold-50: #fbf6ea;
+    --color-gold-100: #f5e8c8;
+    --color-gold-300: #e6c574;
+    --color-gold-400: #d9ae52;
+    --color-gold-500: #c4963c;
+    --color-gold-600: #9c7530;
+
+    --color-herbal-50: #f0f6ee;
+    --color-herbal-300: #a9c9a3;
+    --color-herbal-500: #5b8c5a;
+    --color-herbal-600: #446b45;
+    --color-herbal-700: #33532f;
+
+    --color-ink-50: #f8f4f7;
+    --color-ink-200: #e2d5df;
+    --color-ink-400: #9a7f92;
+    --color-ink-600: #6c5165;
+    --color-ink-800: #34202f;
+    --color-ink-900: #1f1220;
+
+    --color-cream: #fdf3f7;
+    --color-cream-100: #fbe9f0;
+}
+
+/* ---------- Base ---------- */
+body {
+    background-color: var(--color-cream);
+    color: var(--color-ink-800);
+}
+
+::selection {
+    background-color: var(--color-primary-200);
+    color: var(--color-ink-900);
+}
+
+/* ---------- Page loader ---------- */
+#page-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-cream);
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#page-loader.is-loaded {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+#page-loader .loader-mark {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+#page-loader .loader-ring {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 9999px;
+    border: 3px solid var(--color-primary-100);
+    border-top-color: var(--color-primary-600);
+    animation: loader-spin 0.9s linear infinite;
+}
+
+@keyframes loader-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+body.is-loading {
+    overflow: hidden;
+}
+
+/* ---------- Reveal-on-scroll animation ---------- */
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(1.25rem);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+    transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-reveal].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    #page-loader .loader-ring {
+        animation: none;
+    }
+}
+
+/* ---------- Utilities ---------- */
+.text-balance {
+    text-wrap: balance;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
