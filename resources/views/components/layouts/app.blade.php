@@ -42,6 +42,8 @@
     <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
     <meta name="theme-color" content="#d0126f">
 
+    <meta name="facebook-domain-verification" content="ige5c4iuhyiu5cnf676m20myrlzcue" />
+
     <x-seo.local-business-schema />
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
